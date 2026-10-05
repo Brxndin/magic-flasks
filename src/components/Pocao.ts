@@ -40,6 +40,6 @@ export class Pocao {
             }
         }
 
-        return `${this.recipiente.nome} (${this.recipiente.quantidadeMl}ml) de ${produto}: R$ ${this.getPreco()}.`;
+        return `${this.recipiente.nome} (${this.recipiente.quantidadeMl}ml) de ${produto}.`;
     }
 }
