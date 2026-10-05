@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <style>
+            :root {
+                --primary-bg-color: #000;
+                --primary-color: #fff;
+            }
+
+            body {
+                background-color: var(--primary-bg-color);
+                color: var(--primary-color);
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            #cliente {
+                padding: 10px;
+                flex: 1;
+                height: 100vh;
+                border-right: 1px solid var(--primary-color);
+            }
+
+            #funcionario {
+                padding: 10px;
+                flex: 1;
+                height: 100vh;
+                border-left: 1px solid var(--primary-color);
+            }
+        </style>
+
+        <title>Magic Flasks</title>
+    </head>
+    <body>
+        <div id="cliente">
+            <h1>Cliente</h1>
+            <h2>Seus Dados</h2>
+            <label>Nome:<input type="text" id="nome_cliente" placeholder="Informe seu nome" /></label>
+            <h2>Pedido</h2>
+            <div>
+                <h3>Ingredientes Principaos:</h3>
+                <div>
+                    <label for="liquido">Líquido:</label>
+                    <select id="liquido">
+                        <option>Selecione</option>
+                        <option value="lagrima_noiva">Lágrima de Noiva</option>
+                        <option value="agua_eletrizada">Água Eletrizada</option>
+                        <option value="nectar_viscoso">Néctar de Fruta Viscosa</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="edulcorante">Edulcorante:</label>
+                    <select id="edulcorante">
+                        <option>Selecione</option>
+                        <option value="po_fada">Pó de Fada</option>
+                        <option value="cristal_lunar">Grãos de Cristal Lunar</option>
+                        <option value="mandragora">Raíz de Mandragora Moída</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="recipiente">Recipiente:</label>
+                    <select id="recipiente">
+                        <option>Selecione</option>
+                        <option value="redondo">Frasco Redondo (200ml)</option>
+                        <option value="triangular">Frasco Triangular (300ml)</option>
+                        <option value="quadrado">Frasco Quadrado (500ml)</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <h3>Adicionais:</h3>
+                <input name="adicional" value="bolhas" type="checkbox" id="bolhas" /><label for="bolhas">Bolhas</label> <input name="adicional" value="fumaca" type="checkbox" id="fumaca" /><label
+                    for="fumaca"
+                    >Fumaça Colorida</label
+                >
+                <input name="adicional" value="gelo" type="checkbox" id="gelo" /><label for="gelo">Gelo Seco de Cemitério</label>
+            </div>
+            <div>
+                <h3>Utensílios:</h3>
+                <input id="embalagem" type="checkbox" /><label for="embalagem">Embalagem</label> <input id="canudo" type="checkbox" /><label for="canudo">Canudo Espiral</label>
+            </div>
+            <div>
+                <h3>Forma de Pagamento:</h3>
+                <label><input name="pagamento" type="radio" value="1" />Cartão</label>
+                <label><input name="pagamento" type="radio" value="2" />Dinheiro</label>
+                <label><input name="pagamento" type="radio" value="3" />Pix</label>
+            </div>
+            <div>
+                <h3>Cupom de Desconto:</h3>
+                <label for="cupom">Cupom:</label>
+                <input id="cupom" type="text" placeholder="Informe o cupom" />
+            </div>
+            <button id="pedir">Pedir</button>
+        </div>
+        <div id="funcionario">
+            <h2>Funcionário</h2>
+            <button>Preparar</button>
+        </div>
+        <script type="module" src="src/main.ts"></script>
+    </body>
+</html>
