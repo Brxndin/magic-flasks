@@ -1,14 +1,15 @@
 import { Adicional } from '../interfaces/Adicional';
 import { Edulcorante } from '../interfaces/Edulcorante';
 import { Liquido } from '../interfaces/Liquido';
+import { Produto } from '../interfaces/Produto';
 import { Recipiente } from '../interfaces/Recipiente';
 import { PocaoBuilder } from './PocaoBuilder';
 
-export class Pocao {
-    public readonly liquido: Liquido;
-    public readonly edulcorante: Edulcorante;
-    public readonly recipiente: Recipiente;
-    public readonly adicionais: Adicional[];
+export class Pocao implements Produto {
+    private liquido: Liquido;
+    private edulcorante: Edulcorante;
+    private recipiente: Recipiente;
+    private adicionais: Adicional[];
 
     constructor(builder: PocaoBuilder) {
         this.liquido = builder.liquido;
@@ -40,6 +41,6 @@ export class Pocao {
             }
         }
 
-        return `${this.recipiente.nome} (${this.recipiente.quantidadeMl}ml) de ${produto}.`;
+        return `${this.recipiente.nome} (${this.recipiente.quantidadeMl}ml) de ${produto}`;
     }
 }
