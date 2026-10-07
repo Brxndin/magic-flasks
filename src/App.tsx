@@ -17,7 +17,7 @@ export function App() {
     const [pedidosPagos, setPedidosPagos] = useState<Pedido[]>([]);
     const [pedidosProntos, setPedidosProntos] = useState<Pedido[]>([]);
 
-    // uso do singleton pra fila de pedidos
+    // uso do singleton pra fila de pedidos e catálogo
     const filaPedidos = FilaPedidos.getInstancia();
     const catalogo = CatalogoRepository.getInstancia();
 
@@ -139,195 +139,232 @@ export function App() {
 
     return (
         <>
-            <h1 id="titulo-principal">MAGIC FLASKS</h1>
-            <h2 id="subtitulo-principal">Tire um tempo pra se curar</h2>
-            <div id="tela">
-                <div id="cliente">
-                    <h1>Cliente</h1>
+            <header className="header-container">
+                <h1 className="main-title">MAGIC FLASKS</h1>
+                <h2 className="main-subtitle">Tire um tempo pra se curar</h2>
+            </header>
 
-                    <form onSubmit={pedir}>
-                        <h2>Seus Dados</h2>
-                        <div>
-                            <label>
-                                Nome:
-                                <input name="nome_cliente" type="text" placeholder="Informe seu nome" required />
-                            </label>
+            <main className="app-grid">
+                <section className="role-section">
+                    <div className="role-header">
+                        <h1>Cavaleiro</h1>
+                        <span className="role-badge">Área do Cliente</span>
+                    </div>
+
+                    <form onSubmit={pedir} className="card-section">
+                        <h2 className="section-title">Formular Poção</h2>
+
+                        <div className="form-group">
+                            <label htmlFor="nome_cliente">Nome do Aventureiro</label>
+                            <input name="nome_cliente" id="nome_cliente" type="text" placeholder="Ex: Sir Lancelot" required />
                         </div>
 
-                        <h2>Pedido</h2>
-                        <div>
-                            <h3>Ingredientes Principais:</h3>
-                            <div>
-                                <label for="liquido">Líquido:</label>
-                                <select name="liquido" id="liquido" required>
-                                    <option value="">Selecione</option>
-                                    {CATALOGO.liquidos.map((liquido) => (
-                                        <option key={liquido.id} value={liquido.id}>
-                                            {liquido.nome} - R$ {liquido.preco.toFixed(2)}
-                                        </option>
-                                    ))}
-                                </select>
+                        <div className="form-group">
+                            <label htmlFor="liquido">Base Líquida</label>
+                            <select name="liquido" id="liquido" required>
+                                <option value="">Selecione o líquido...</option>
+                                {CATALOGO.liquidos.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.nome} — R$ {item.preco.toFixed(2)}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="edulcorante">Edulcorante</label>
+                            <select name="edulcorante" id="edulcorante" required>
+                                <option value="">Selecione o edulcorante...</option>
+                                {CATALOGO.edulcorantes.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.nome} — R$ {item.preco.toFixed(2)}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="recipiente">Frasco / Recipiente</label>
+                            <select name="recipiente" id="recipiente" required>
+                                <option value="">Selecione o frasco...</option>
+                                {CATALOGO.recipientes.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.nome} ({item.quantidadeMl}ml) — {item.fatorMultiplicador * 100}% do valor
+                                    </option>
+                                ))}
+                            </select>
+                            <p className="field-hint">* A taxa do recipiente incide apenas sobre os ingredientes principais + adicionais.</p>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Ervas & Adicionais</label>
+                            <div className="options-grid">
+                                {CATALOGO.adicionais.map((item) => (
+                                    <label key={item.id} className="custom-option">
+                                        <input name="adicional" value={item.id} type="checkbox" />
+                                        <span>
+                                            {' '}
+                                            {item.nome} (+R$ {item.preco.toFixed(2)})
+                                        </span>
+                                    </label>
+                                ))}
                             </div>
-                            <div>
-                                <label for="edulcorante">Edulcorante:</label>
-                                <select name="edulcorante" id="edulcorante" required>
-                                    <option value="">Selecione</option>
-                                    {CATALOGO.edulcorantes.map((edulcorante) => (
-                                        <option key={edulcorante.id} value={edulcorante.id}>
-                                            {edulcorante.nome} - R$ {edulcorante.preco.toFixed(2)}
-                                        </option>
-                                    ))}
-                                </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Utensílios Extra</label>
+                            <div className="options-grid">
+                                {CATALOGO.utensilios.map((item) => (
+                                    <label key={item.id} className="custom-option">
+                                        <input name="utensilio" value={item.id} type="checkbox" />
+                                        <span>
+                                            {' '}
+                                            {item.nome} (+R$ {item.preco.toFixed(2)})
+                                        </span>
+                                    </label>
+                                ))}
                             </div>
-                            <div>
-                                <label for="recipiente">Recipiente:</label>
-                                <select name="recipiente" id="recipiente" required>
-                                    <option value="">Selecione</option>
-                                    {CATALOGO.recipientes.map((recipiente) => (
-                                        <option key={recipiente.id} value={recipiente.id}>
-                                            {recipiente.nome} ({recipiente.quantidadeMl}ml) - {recipiente.fatorMultiplicador * 100}% do valor
-                                        </option>
-                                    ))}
-                                </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Pagamento</label>
+                            <div className="options-grid">
+                                {CATALOGO.pagamentos.map((item) => (
+                                    <label key={item.id} className="custom-option">
+                                        <input name="pagamento" type="radio" value={item.id} required />
+                                        <span> {item.nome}</span>
+                                    </label>
+                                ))}
                             </div>
-                            <p>Obs: a taxa do recipiente é aplicada apenas sobre os valores dos ingredientes principais + adicionais.</p>
                         </div>
 
-                        <div>
-                            <h3>Adicionais:</h3>
-                            {CATALOGO.adicionais.map((adicional) => (
-                                <label key={adicional.id}>
-                                    <input name="adicional" value={adicional.id} type="checkbox" />
-                                    {adicional.nome} - R$ {adicional.preco.toFixed(2)}
-                                </label>
-                            ))}
+                        <div className="form-group">
+                            <label htmlFor="cupom">Pergaminho de Desconto (Cupom)</label>
+                            <input name="cupom" id="cupom" type="text" placeholder="Digite as runas mágicas" />
+                            <p className="field-hint">* O desconto incide sobre ingredientes principais + adicionais + utensílios.</p>
                         </div>
 
-                        <div>
-                            <h3>Utensílios:</h3>
-                            {CATALOGO.utensilios.map((utensilio) => (
-                                <label key={utensilio.id}>
-                                    <input name="utensilio" value={utensilio.id} type="checkbox" />
-                                    {utensilio.nome} - R$ {utensilio.preco.toFixed(2)}
-                                </label>
-                            ))}
-                            <p>Obs: o valor dos utensílios é calculado separado da poção.</p>
-                        </div>
-
-                        <div>
-                            <h3>Forma de Pagamento:</h3>
-                            {CATALOGO.pagamentos.map((pagamento) => (
-                                <label key={pagamento.id}>
-                                    <input name="pagamento" type="radio" value={pagamento.id} required />
-                                    {pagamento.nome}
-                                </label>
-                            ))}
-                            <p>Obs: ao pagar com cartão, é cobrada uma taxa de 2,5% sobre o valor final já com desconto.</p>
-                        </div>
-
-                        <div>
-                            <h3>Cupom de Desconto:</h3>
-                            <label for="cupom">Cupom:</label>
-                            <input name="cupom" id="cupom" type="text" placeholder="Informe o cupom" />
-                            <p>Obs: o desconto aplicado é feito sobre o valor dos ingredientes principais + adicionais + utensílios.</p>
-                        </div>
-
-                        <button type="submit">Pedir</button>
+                        <button type="submit" className="btn-primary">
+                            Pedir Poção
+                        </button>
                     </form>
 
-                    <h2>Pedidos para Pagar</h2>
-                    <div>
+                    <div className="card-section">
+                        <div className="section-title">
+                            <h2>Caixa / Pedidos a Pagar</h2>
+                            <button className="btn-action" onClick={pagar}>
+                                Pagar Próximo
+                            </button>
+                        </div>
+
                         {pedidosPendentes.length > 0 ? (
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Pedido</th>
-                                        <th>Valor Original</th>
-                                        <th>Desconto</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {pedidosPendentes.map((pedido) => {
-                                        return (
-                                            <tr>
+                            <div className="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Pedido</th>
+                                            <th>Original</th>
+                                            <th>Desconto</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {pedidosPendentes.map((pedido) => (
+                                            <tr key={pedido.id}>
                                                 <td>{pedido.produto.getDescricao()}</td>
                                                 <td>R$ {pedido.produto.getPreco().toFixed(2)}</td>
                                                 <td>R$ {pedido.descontoStrategy.calcular(pedido).toFixed(2)}</td>
-                                                <td>{pedido.pagamentoStrategy.processar(pedido.produto.getPreco())}</td>
+                                                <td>{pedido.pagamentoStrategy.processar(pedido.produto.getPreco() - pedido.descontoStrategy.calcular(pedido))}</td>
                                             </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         ) : (
-                            <p>Não há pedidos pendentes!</p>
+                            <p className="empty-state">Nenhum pedido aguardando pagamento.</p>
                         )}
-                        <button onClick={pagar}>Pagar o Próximo</button>
                     </div>
-                </div>
+                </section>
 
-                <div id="funcionario">
-                    <h1>Funcionários</h1>
+                <section className="role-section">
+                    <div className="role-header">
+                        <h1>Oficina Mágica</h1>
+                        <span className="role-badge">Atendimento & Entrega</span>
+                    </div>
 
-                    <h2>Feiticeiro</h2>
-                    <div>
-                        <h3>Pedidos para Preparo</h3>
+                    <div className="card-section">
+                        <div className="section-title">
+                            <h2>Feiticeiro — Caldeirão</h2>
+                            <button className="btn-action" onClick={preparar}>
+                                Preparar Próximo
+                            </button>
+                        </div>
+
                         {pedidosPagos.length > 0 ? (
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Pedido</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {pedidosPagos.map((pedido) => {
-                                        return (
-                                            <tr>
-                                                <td>{pedido.id}</td>
+                            <div className="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Poção a Preparar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {pedidosPagos.map((pedido) => (
+                                            <tr key={pedido.id}>
+                                                <td>#{pedido.id}</td>
                                                 <td>{pedido.produto.getDescricao()}</td>
                                             </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         ) : (
-                            <p>Não há pedidos pagos!</p>
+                            <p className="empty-state">Nenhuma poção pendente no caldeirão.</p>
                         )}
-                        <button onClick={preparar}>Preparar o Próximo</button>
                     </div>
 
-                    <h2>Duende</h2>
-                    <div>
-                        <h3>Pedidos para Entrega</h3>
+                    <div className="card-section">
+                        <div className="section-title">
+                            <h2>Duendes — Entregas Expressas LTDA</h2>
+                            <button className="btn-action" onClick={entregar}>
+                                Despachar Próximo
+                            </button>
+                        </div>
+
+                        {falaDoDuende && (
+                            <div className="duende-speech">
+                                <span>
+                                    💬 <strong>Duende diz:</strong> "{falaDoDuende}"
+                                </span>
+                            </div>
+                        )}
+
                         {pedidosProntos.length > 0 ? (
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Pedido</th>
-                                        <th>Destinatário</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {pedidosProntos.map((pedido) => {
-                                        return (
-                                            <tr>
-                                                <td>{pedido.id}</td>
+                            <div className="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Destinatário</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {pedidosProntos.map((pedido) => (
+                                            <tr key={pedido.id}>
+                                                <td>{EntregaDuendeAdapter.geraCodigoEntrega(pedido)}</td>
                                                 <td>{pedido.destinatario}</td>
                                             </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         ) : (
-                            <p>Não há pedidos prontos!</p>
+                            <p className="empty-state">Nenhuma poção pronta para entrega.</p>
                         )}
-                        {falaDoDuende && <p>Duende: {falaDoDuende}</p>}
-                        <button onClick={entregar}>Entregar o Próximo</button>
                     </div>
-                </div>
-            </div>
+                </section>
+            </main>
         </>
     );
 }
