@@ -1,8 +1,8 @@
-import { Adicional } from '../interfaces/Adicional';
-import { Edulcorante } from '../interfaces/Edulcorante';
-import { Liquido } from '../interfaces/Liquido';
-import { Recipiente } from '../interfaces/Recipiente';
-import { Pocao } from './Pocao';
+import { Adicional } from '../../interfaces/Adicional';
+import { Edulcorante } from '../../interfaces/Edulcorante';
+import { Liquido } from '../../interfaces/Liquido';
+import { Recipiente } from '../../interfaces/Recipiente';
+import { Pocao } from '../Pocao';
 
 export class PocaoBuilder {
     readonly liquido: Liquido;
