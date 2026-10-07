@@ -1,5 +1,5 @@
-import { Pedido } from "../components/Pedido";
+import { Pedido } from '../components/Pedido';
 
 export interface DescontoStrategy {
-    calcular(pedido: Pedido): number
+    calcular(pedido: Pedido): number;
 }

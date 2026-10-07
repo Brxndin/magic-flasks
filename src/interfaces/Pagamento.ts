@@ -1,4 +1,4 @@
-import { PagamentoStrategy } from "./PagamentoStrategy";
+import { PagamentoStrategy } from './PagamentoStrategy';
 
 export interface Pagamento {
     id: string;
