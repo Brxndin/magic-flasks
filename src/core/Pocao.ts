@@ -3,7 +3,7 @@ import { Edulcorante } from '../interfaces/Edulcorante';
 import { Liquido } from '../interfaces/Liquido';
 import { Produto } from '../interfaces/Produto';
 import { Recipiente } from '../interfaces/Recipiente';
-import { PocaoBuilder } from './PocaoBuilder';
+import { PocaoBuilder } from './builders/PocaoBuilder';
 
 export class Pocao implements Produto {
     private liquido: Liquido;
