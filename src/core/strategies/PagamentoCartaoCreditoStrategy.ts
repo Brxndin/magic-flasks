@@ -1,4 +1,4 @@
-import { PagamentoStrategy } from '../interfaces/PagamentoStrategy';
+import { PagamentoStrategy } from '../../interfaces/PagamentoStrategy';
 
 export class PagamentoCartaoCreditoStrategy implements PagamentoStrategy {
     public processar(valor: number): string {

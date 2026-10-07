@@ -1,5 +1,5 @@
-import { DescontoStrategy } from '../interfaces/DescontoStrategy';
-import { Pedido } from './Pedido';
+import { DescontoStrategy } from '../../interfaces/DescontoStrategy';
+import { Pedido } from '../Pedido';
 
 export class DescontoCupomStrategy implements DescontoStrategy {
     calcular(pedido: Pedido): number {
