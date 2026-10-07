@@ -1,4 +1,4 @@
-import { Pedido } from '../components/Pedido';
+import { Pedido } from '../core/Pedido';
 
 export class FilaPedidos {
     private static instancia: FilaPedidos | null;

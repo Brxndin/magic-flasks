@@ -1,6 +1,6 @@
-import { PagamentoCartaoCreditoStrategy } from '../components/PagamentoCartaoCreditoStrategy';
-import { PagamentoDinheiroStrategy } from '../components/PagamentoDinheiroStrategy';
-import { PagamentoPIXStrategy } from '../components/PagamentoPIXStrategy';
+import { PagamentoCartaoCreditoStrategy } from '../core/strategies/PagamentoCartaoCreditoStrategy';
+import { PagamentoDinheiroStrategy } from '../core/strategies/PagamentoDinheiroStrategy';
+import { PagamentoPIXStrategy } from '../core/strategies/PagamentoPIXStrategy';
 import { Adicional } from '../interfaces/Adicional';
 import { Cupom } from '../interfaces/Cupom';
 import { Edulcorante } from '../interfaces/Edulcorante';

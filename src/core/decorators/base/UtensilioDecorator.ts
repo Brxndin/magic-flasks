@@ -1,4 +1,4 @@
-import { Produto } from '../../interfaces/Produto';
+import { Produto } from '../../../interfaces/Produto';
 
 export abstract class UtensilioDecorator implements Produto {
     protected produto: Produto;

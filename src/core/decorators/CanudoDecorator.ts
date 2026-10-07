@@ -1,5 +1,5 @@
-import { CatalogoRepository } from "../../repositories/CatalogoRepository";
-import { UtensilioDecorator } from "./base/UtensilioDecorator";
+import { CatalogoRepository } from '../../repositories/CatalogoRepository';
+import { UtensilioDecorator } from './base/UtensilioDecorator';
 
 export class CanudoDecorator extends UtensilioDecorator {
     getPreco(): number {
