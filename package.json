@@ -1,9 +1,16 @@
 {
+  "name": "magic-flasks",
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite"
   },
   "devDependencies": {
+    "@preact/preset-vite": "^2.10.6",
     "typescript": "^7.0.2",
     "vite": "^8.3.2"
+  },
+  "dependencies": {
+    "preact": "^11.0.0"
   }
 }
