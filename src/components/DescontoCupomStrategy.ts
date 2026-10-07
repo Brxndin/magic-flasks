@@ -1,9 +1,9 @@
-import { DescontoStrategy } from "../interfaces/DescontoStrategy";
-import { Pedido } from "./Pedido";
+import { DescontoStrategy } from '../interfaces/DescontoStrategy';
+import { Pedido } from './Pedido';
 
 export class DescontoCupomStrategy implements DescontoStrategy {
     calcular(pedido: Pedido): number {
-        const preco = pedido.pocao.getPreco();
+        const preco = pedido.produto.getPreco();
 
         if (pedido.cupom) {
             return preco * pedido.cupom.fatorMultiplicador;
