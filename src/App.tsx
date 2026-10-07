@@ -1,11 +1,11 @@
 import { useRef, useState } from 'preact/hooks';
 
-import { CanudoDecorator } from './components/CanudoDecorator';
-import { DescontoCupomStrategy } from './components/DescontoCupomStrategy';
-import { EmbalagemDecorator } from './components/EmbalagemDecorator';
-import { EntregaDuendeAdapter } from './components/EntregaDuendeAdapter';
-import { Pedido } from './components/Pedido';
-import { PocaoBuilder } from './components/PocaoBuilder';
+import { CanudoDecorator } from './core/decorators/CanudoDecorator';
+import { DescontoCupomStrategy } from './core/strategies/DescontoCupomStrategy';
+import { EmbalagemDecorator } from './core/decorators/EmbalagemDecorator';
+import { EntregaDuendeAdapter } from './core/adapters/EntregaDuendeAdapter';
+import { Pedido } from './core/Pedido';
+import { PocaoBuilder } from './core/builders/PocaoBuilder';
 import { Produto } from './interfaces/Produto';
 import { CATALOGO, CatalogoRepository } from './repositories/CatalogoRepository';
 import { FilaPedidos } from './services/FilaPedidos';
