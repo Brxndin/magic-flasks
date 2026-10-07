@@ -1,9 +1,7 @@
 import { PagamentoStrategy } from '../interfaces/PagamentoStrategy';
 
 export class PagamentoDinheiroStrategy implements PagamentoStrategy {
-    public processar(valor: number): boolean {
-        console.log(`Valor a ser pago: ${valor.toFixed(2)}.`);
-
-        return true;
+    public processar(valor: number): string {
+        return `Valor a ser pago: R$ ${valor.toFixed(2)}.`;
     }
 }
