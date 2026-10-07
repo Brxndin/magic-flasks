@@ -1,3 +1,3 @@
 export interface PagamentoStrategy {
-    processar(valor: number): boolean
+    processar(valor: number): string;
 }
