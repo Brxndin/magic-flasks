@@ -1,6 +1,6 @@
-import { EntregasDuendesLTDA, Pacote } from '../external/EntregasDuendesLTDA';
-import { ServicoEntrega } from '../interfaces/ServicoEntrega';
-import { Pedido } from './Pedido';
+import { EntregasDuendesLTDA, Pacote } from '../../external/EntregasDuendesLTDA';
+import { ServicoEntrega } from '../../interfaces/ServicoEntrega';
+import { Pedido } from '../Pedido';
 
 export class EntregaDuendeAdapter implements ServicoEntrega {
     private sistemaDuendes = new EntregasDuendesLTDA();
