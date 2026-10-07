@@ -7,6 +7,7 @@ Sistema para criação de pedidos de poções mágicas. Feito para a cadeira de 
 - TypeScript
 - Preact
 - Vite
+- Google Gemini (para algumas ideias e estilização da interface)
 
 ## Design Patterns Usados
 
