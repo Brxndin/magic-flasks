@@ -1,6 +1,6 @@
 import { PagamentoCartaoCreditoStrategy } from '../components/PagamentoCartaoCreditoStrategy';
 import { PagamentoDinheiroStrategy } from '../components/PagamentoDinheiroStrategy';
-import { PagamentoPixStrategy } from '../components/PagamentoPIXStrategy';
+import { PagamentoPIXStrategy } from '../components/PagamentoPIXStrategy';
 import { Adicional } from '../interfaces/Adicional';
 import { Cupom } from '../interfaces/Cupom';
 import { Edulcorante } from '../interfaces/Edulcorante';
@@ -31,24 +31,24 @@ export const CATALOGO = {
         { id: 'gelo', nome: 'Gelo Seco de Cemitério', preco: 2 },
     ],
     cupons: [
-        { id: 'MAGIC10', fatorMultiplicador: 0.10 },
+        { id: 'MAGIC10', fatorMultiplicador: 0.1 },
         { id: 'MAGIC15', fatorMultiplicador: 0.15 },
-        { id: 'MAGIC20', fatorMultiplicador: 0.20 },
+        { id: 'MAGIC20', fatorMultiplicador: 0.2 },
     ],
     utensilios: [
-        { id: 'canudo', nome: 'Canudo Espiral', preco: 0.50 },
+        { id: 'canudo', nome: 'Canudo Espiral', preco: 0.5 },
         { id: 'embalagem', nome: 'Embalagem', preco: 1 },
     ],
     pagamentos: [
         { id: 'cartao', nome: 'Cartão', strategy: new PagamentoCartaoCreditoStrategy() },
-        { id: 'pix', nome: 'PIX', strategy: new PagamentoPixStrategy() },
+        { id: 'pix', nome: 'PIX', strategy: new PagamentoPIXStrategy() },
         { id: 'dinheiro', nome: 'Dinheiro', strategy: new PagamentoDinheiroStrategy() },
     ],
 };
 
 export class CatalogoRepository {
     private static instancia: CatalogoRepository | null;
-    
+
     private liquidos = new Map<string, Liquido>();
     private edulcorantes = new Map<string, Edulcorante>();
     private recipientes = new Map<string, Recipiente>();
